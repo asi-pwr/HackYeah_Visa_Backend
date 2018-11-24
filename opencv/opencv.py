@@ -52,7 +52,7 @@ import numpy as np
 # In[2]:
 
 #there is no label 0 in our training data so subject name for index/label 0 is empty
-subjects = ["", "Kuba", "Tomek", "Łukasz", "asia"]
+#subjects = ["", "Kuba", "Tomek", "Łukasz", "asia"]
 
 
 # ### Prepare training data
@@ -221,15 +221,15 @@ def prepare_training_data(data_folder_path):
 #one list will contain all the faces
 #and other list will contain respective labels for each face
 #print(sys.argv[1:])
+def train_run(mode):
+    if mode == True:
+        print("Preparing data...")
+        faces, labels = prepare_training_data("training-data")
+        print("Data prepared")
 
-if int(sys.argv[1]) == 0:
-    print("Preparing data...")
-    faces, labels = prepare_training_data("training-data")
-    print("Data prepared")
-
-    #print total faces and labels
-    print("Total faces: ", len(faces))
-    print("Total labels: ", len(labels))
+        #print total faces and labels
+        print("Total faces: ", len(faces))
+        print("Total labels: ", len(labels))
 
 
 # This was probably the boring part, right? Don't worry, the fun stuff is coming up next. It's time to train our own face recognizer so that once trained it can recognize new faces of the persons it was trained on. Read? Ok then let's train our face recognizer.
@@ -247,7 +247,7 @@ if int(sys.argv[1]) == 0:
 # In[6]:
 
 #create our LBPH face recognizer
-face_recognizer = cv2.face.LBPHFaceRecognizer_create()
+    face_recognizer = cv2.face.LBPHFaceRecognizer_create()
 
 #or use EigenFaceRecognizer by replacing above line with
 #face_recognizer = cv2.face.EigenFaceRecognizer_create()
@@ -261,11 +261,13 @@ face_recognizer = cv2.face.LBPHFaceRecognizer_create()
 # In[7]:
 
 #train our face recognizer of our training faces
-if int(sys.argv[1]) == 0:
-    face_recognizer.train(faces, np.array(labels))
-    face_recognizer.save("weights.yml")
-else:
-    face_recognizer.read("weights.yml")
+    if mode == True:
+        face_recognizer.train(faces, np.array(labels))
+        face_recognizer.save("weights.yml")
+    else:
+        face_recognizer.read("weights.yml")
+
+    return face_recognizer
 
 
 # **Did you notice** that instead of passing `labels` vector directly to face recognizer I am first converting it to **numpy** array? This is because OpenCV expects labels vector to be a `numpy` array.
@@ -304,7 +306,7 @@ def draw_text(img, text, x, y):
 #this function recognizes the person in image passed
 #and draws a rectangle around detected face with name of the
 #subject
-def predict(test_img):
+def predict(test_img, face_recognizer, subjects):
     #make a copy of the image as we don't want to chang original image
     img = test_img.copy()
     #detect face from the image
@@ -320,34 +322,4 @@ def predict(test_img):
     #draw name of predicted person
     draw_text(img, label_text, rect[0], rect[1]-5)
 
-    return img
-
-# Now that we have the prediction function well defined, next step is to actually call this function on our test images and display those test images to see if our face recognizer correctly recognized them. So let's do it. This is what we have been waiting for.
-
-# In[10]:
-
-print("Predicting images...")
-
-#load test images
-test_img1 = cv2.imread("test-data/test1.jpg")
-test_img2 = cv2.imread("test-data/test2.jpg")
-test_img3 = cv2.imread("test-data/test3.jpg")
-test_img4 = cv2.imread("test-data/test4.jpg")
-
-#perform a prediction
-predicted_img1 = predict(test_img1)
-predicted_img2 = predict(test_img2)
-predicted_img3 = predict(test_img3)
-predicted_img4 = predict(test_img4)
-print("Prediction complete")
-
-#display both images
-cv2.imshow(subjects[1], cv2.resize(predicted_img1, (400, 500)))
-cv2.imshow(subjects[2], cv2.resize(predicted_img2, (400, 500)))
-cv2.imshow(subjects[3], cv2.resize(predicted_img3, (400, 500)))
-cv2.imshow(subjects[4], cv2.resize(predicted_img4, (400, 500)))
-
-cv2.waitKey(0)
-cv2.destroyAllWindows()
-cv2.waitKey(1)
-cv2.destroyAllWindows()
+    return img, label
