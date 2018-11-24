@@ -3,8 +3,9 @@
 #### Install
 ```
 pip3 install opencv-contrib-python
+pip3 install flask
 ```
 #### Run
 ```
-manage.py runserver <adress>
+./run.sh
 ```
