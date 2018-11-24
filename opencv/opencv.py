@@ -19,6 +19,7 @@
 import cv2
 #import os module for reading training data directories and paths
 import os
+import sys
 #import numpy to convert python lists to numpy arrays as
 #it is needed by OpenCV face recognizers
 import numpy as np
@@ -219,13 +220,16 @@ def prepare_training_data(data_folder_path):
 #data will be in two lists of same size
 #one list will contain all the faces
 #and other list will contain respective labels for each face
-print("Preparing data...")
-faces, labels = prepare_training_data("training-data")
-print("Data prepared")
+#print(sys.argv[1:])
 
-#print total faces and labels
-print("Total faces: ", len(faces))
-print("Total labels: ", len(labels))
+if int(sys.argv[1]) == 0:
+    print("Preparing data...")
+    faces, labels = prepare_training_data("training-data")
+    print("Data prepared")
+
+    #print total faces and labels
+    print("Total faces: ", len(faces))
+    print("Total labels: ", len(labels))
 
 
 # This was probably the boring part, right? Don't worry, the fun stuff is coming up next. It's time to train our own face recognizer so that once trained it can recognize new faces of the persons it was trained on. Read? Ok then let's train our face recognizer.
@@ -257,7 +261,11 @@ face_recognizer = cv2.face.LBPHFaceRecognizer_create()
 # In[7]:
 
 #train our face recognizer of our training faces
-face_recognizer.train(faces, np.array(labels))
+if int(sys.argv[1]) == 0:
+    face_recognizer.train(faces, np.array(labels))
+    face_recognizer.save("weights.yml")
+else:
+    face_recognizer.read("weights.yml")
 
 
 # **Did you notice** that instead of passing `labels` vector directly to face recognizer I am first converting it to **numpy** array? This is because OpenCV expects labels vector to be a `numpy` array.
