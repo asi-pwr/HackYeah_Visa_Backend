@@ -58,7 +58,7 @@ def create_app(test_config=None):
 
             payment_id = len(payments) + 1
 
-            new_payment = {"payment_id": payment_id, "user_id": user_id, "value", data['value']}
+            new_payment = {"payment_id": payment_id, "user_id": user_id, "value": data['value'], "name": "Biedronka", "title": "Zakupy"}
             payments.append(new_payment)
             print(len(payments))
 
