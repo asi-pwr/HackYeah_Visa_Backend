@@ -1,8 +1,5 @@
 import sys
-import opencv as cv
-
-#import OpenCV for test puprose
-import cv2
+import opencv.opencv as cv
 
 def recognize_by_img(img, face_recognizer, subjects):
     print("Predicting image...")

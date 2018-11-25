@@ -5,16 +5,17 @@ import pusher
 from flask import Flask, request
 from . import visa_api_client
 
-import recognize as rec
-import opencv as cv
+import opencv.recognize as rec
+import opencv.opencv as cv
 
-payment_counter = 0
 payments = []
 subjects = ["", "Kuba", "Tomek", "Łukasz", "asia"]
 
 
 def create_app(test_config=None):
     UPLOAD_FOLDER = '/upload'
+
+    payment_counter = 0
 
     # create and configure the app
     app = Flask(__name__, instance_relative_config=True)
@@ -55,11 +56,11 @@ def create_app(test_config=None):
             data = json.load(request.files['data'])
             print(data)
 
-            payment_id = payment_counter
-            payment_counter += 1
+            payment_id = 1
+            #payment_counter += 1
 
-            payments.append((payment_id, user_id, data.value))
-            payment_counter += 1
+            payments.append((payment_id, user_id, data['value']))
+            #payment_counter += 1
 
             pusher_client = pusher.Pusher(
                 app_id='656893',
