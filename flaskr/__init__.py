@@ -1,6 +1,8 @@
 import os
 
 from flask import Flask, request
+from . import visa_api_client
+
 
 def create_app(test_config=None):
     UPLOAD_FOLDER = '/upload'
@@ -31,11 +33,23 @@ def create_app(test_config=None):
     def hello():
         return 'Hello, World!'
 
-    @app.route('/uploader', methods = ['GET', 'POST'])
+    @app.route('/uploader', methods=['GET', 'POST'])
     def upload_file():
-       if request.method == 'POST':
-          f = request.files['file']
-          f.save("img.png")
-          return 'file uploaded successfully'
+        if request.method == 'POST':
+            f = request.files['file']
+            f.save("img.png")
+            return 'file uploaded successfully'
+
+    @app.route('/push', methods=['POST'])
+    def push_fund_transaction():
+        if request.method == 'POST':
+            res = visa_api_client.push_fund_transactions()
+            return res
+
+    @app.route('/pull', methods=['POST'])
+    def pull_fund_transaction():
+        if request.method == 'POST':
+            res = visa_api_client.pull_fund_transactions()
+            return res
 
     return app
