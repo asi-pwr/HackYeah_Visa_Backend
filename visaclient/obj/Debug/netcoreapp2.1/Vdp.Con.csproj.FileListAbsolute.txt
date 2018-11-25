@@ -1,0 +1,11 @@
+/home/tomkecy/Develop/HackyeahVisa/samplecode-CS-1c2d87/vdp-c-sharp/Vdp.Con/bin/Debug/netcoreapp2.1/Vdp.Con.deps.json
+/home/tomkecy/Develop/HackyeahVisa/samplecode-CS-1c2d87/vdp-c-sharp/Vdp.Con/bin/Debug/netcoreapp2.1/Vdp.Con.runtimeconfig.json
+/home/tomkecy/Develop/HackyeahVisa/samplecode-CS-1c2d87/vdp-c-sharp/Vdp.Con/bin/Debug/netcoreapp2.1/Vdp.Con.runtimeconfig.dev.json
+/home/tomkecy/Develop/HackyeahVisa/samplecode-CS-1c2d87/vdp-c-sharp/Vdp.Con/bin/Debug/netcoreapp2.1/Vdp.Con.dll
+/home/tomkecy/Develop/HackyeahVisa/samplecode-CS-1c2d87/vdp-c-sharp/Vdp.Con/bin/Debug/netcoreapp2.1/Vdp.Con.pdb
+/home/tomkecy/Develop/HackyeahVisa/samplecode-CS-1c2d87/vdp-c-sharp/Vdp.Con/obj/Debug/netcoreapp2.1/Vdp.Con.csprojAssemblyReference.cache
+/home/tomkecy/Develop/HackyeahVisa/samplecode-CS-1c2d87/vdp-c-sharp/Vdp.Con/obj/Debug/netcoreapp2.1/Vdp.Con.csproj.CoreCompileInputs.cache
+/home/tomkecy/Develop/HackyeahVisa/samplecode-CS-1c2d87/vdp-c-sharp/Vdp.Con/obj/Debug/netcoreapp2.1/Vdp.Con.AssemblyInfoInputs.cache
+/home/tomkecy/Develop/HackyeahVisa/samplecode-CS-1c2d87/vdp-c-sharp/Vdp.Con/obj/Debug/netcoreapp2.1/Vdp.Con.AssemblyInfo.cs
+/home/tomkecy/Develop/HackyeahVisa/samplecode-CS-1c2d87/vdp-c-sharp/Vdp.Con/obj/Debug/netcoreapp2.1/Vdp.Con.dll
+/home/tomkecy/Develop/HackyeahVisa/samplecode-CS-1c2d87/vdp-c-sharp/Vdp.Con/obj/Debug/netcoreapp2.1/Vdp.Con.pdb
