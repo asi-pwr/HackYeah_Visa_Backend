@@ -60,6 +60,7 @@ def create_app(test_config=None):
             #payment_counter += 1
 
             payments.append((payment_id, user_id, data['value']))
+            print(len(payments))
             #payment_counter += 1
 
             pusher_client = pusher.Pusher(
@@ -76,8 +77,9 @@ def create_app(test_config=None):
 
     @app.route('/payments/<id>', methods=['GET'])
     def get_payment_details(id):
+        print(len(payments))
         if request.method == 'GET':
-            return json.dumps(payments[id])
+            return json.dumps(payments[int(id)])
 
     @app.route('/payments', methods=['POST'])
     def push_fund_transaction():
